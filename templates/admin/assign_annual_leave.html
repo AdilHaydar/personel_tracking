@@ -1,0 +1,42 @@
+{% extends 'admin/base_admin.html' %}
+{% load static %}
+
+{% block head %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h1>Assign Annual Leave</h1>
+                <hr>
+                <form id="takenAnnualLeave">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="user-select">Search Employee:</label>
+                        <select id="user-select" name="user" style="width: 300px;">
+                            <option value="">Pick an Employee</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_date">Requested Day</label>
+                        <input type="number" class="form-control" id="leave_duration" name="leave_duration">
+                    </div>
+
+                    <div class="form-group">
+                        <div><label for="start_date">Description</label></div>
+                        <textarea id="description" name="description"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+            
+        </div>
+    </div>
+{% endblock content %}
+
+{% block jscript %}
+<script src="{% static 'js/admin/assign_annual_leave.js' %}"></script>
+{% endblock jscript %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/employee/login.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h1>Employee Login</h1>
+                <form id="loginForm">
+                    {% csrf_token %}
+                    <input type="email" class="form-control login-input" name="email" placeholder="Email">
+                    <input type="password" class="form-control login-input" name="password" placeholder="Password">
+
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+
+    {% block jscript %}
+    <script src="{% static 'js/employee/login.js' %}"></script>
+    {% endblock %}
+{% endblock %}

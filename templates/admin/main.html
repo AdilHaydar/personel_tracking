@@ -1,0 +1,38 @@
+{% extends 'admin/base_admin.html' %}
+{% load static %}
+
+{% block head %}
+    
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h1>Employees Who Are Late</h1>
+                <hr>
+                <table id="datatable" class="display">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Last Login</th>
+                            <th>Late Hour (Minute)</th>
+                        </tr>
+                    </thead>
+                </table>
+                <br>
+                <div class="text-center">
+                    <a href="{% url 'users:admin_taken_annual_leave' %}" class="btn btn-primary">View Annual Leave Request(s)</a>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            
+        </div>
+    </div>
+{% endblock content %}
+
+{% block jscript %}
+    <script src="{% static 'js/admin/main.js' %}"></script>
+{% endblock %}

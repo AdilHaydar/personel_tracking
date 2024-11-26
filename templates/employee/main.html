@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            
+        </div>
+        <div class="col-md-6">
+            <h1>Employee Dashboard</h1>
+            <hr>
+
+            <form id="takenAnnualLeave">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="start_date">Requested Day</label>
+                    <input type="number" class="form-control" id="leave_duration" name="leave_duration">
+                </div>
+                <div class="form-group">
+                    <div><label for="start_date">Description</label></div>
+                    <textarea id="description" name="description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div class="text-center">
+                <a href="{% url 'users:taken_annual_leave' %}">View Annual Leave Request(s)</a>
+            </div>
+            
+        </div>
+        <div class="col-md-3">
+            <div class="list-group mt-3">
+                <form id="logoutId">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block jscript %}
+<script src="{% static 'js/employee/main.js' %}"></script>
+{% endblock %}
+
