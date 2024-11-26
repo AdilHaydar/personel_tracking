@@ -34,3 +34,7 @@ class AdminTakenAnnualLeaveTemplateView(LoginRequiredMixin, SuperuserRequiredMix
 class AdminAssignAnnualLeaveTemplateView(LoginRequiredMixin, SuperuserRequiredMixin, TemplateView):
     template_name = "admin/assign_annual_leave.html"
     login_url = '/u/login/admin/'
+    
+    
+class EmployeeRegisterTemplateView(AnonymousRequiredMixin, TemplateView):
+    template_name = "employee/register.html"

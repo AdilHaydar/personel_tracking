@@ -51,13 +51,6 @@ class CustomLoginView(LoginView):
         endpoint = path.split('/')[-2]
         context['login_type'] = LoginType.EMPLOYEE if endpoint == 'employee' else LoginType.ADMIN
         return context
-
-    # def post(self, request, *args, **kwargs):
-    #     context = self.get_serializer_context()
-    #     result = super(CustomLoginView, self).post(request, *args, **kwargs)
-    #     if context["login_type"] == LoginType.EMPLOYEE:
-    #         self.login_log(request.user)
-    #     return result
     
 class CustomLogoutView(LogoutView):
     

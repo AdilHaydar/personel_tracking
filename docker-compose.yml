@@ -1,0 +1,70 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    container_name: django_core
+    command: uvicorn core.asgi:application --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+    environment:
+      - POSTGRES_DB=personel_tracking
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=toor
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - DJANGO_SETTINGS_MODULE=core.settings
+
+  celery:
+    build: .
+    container_name: celery_worker
+    command: celery -A core worker --loglevel=info
+    depends_on:
+      - redis
+      - db
+    volumes:
+      - .:/app
+    environment:
+      - POSTGRES_DB=personel_tracking
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=toor
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - DJANGO_SETTINGS_MODULE=core.settings
+
+  redis:
+    image: redis:6.2
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  db:
+    image: postgres:14
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: toor
+      POSTGRES_DB: personel_tracking
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  express:
+    build:
+      context: ./swagger
+    container_name: swagger
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./swagger:/app
+    environment:
+      - NODE_ENV=development
+
+volumes:
+  postgres_data:

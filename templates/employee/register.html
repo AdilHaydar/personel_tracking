@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/employee/login.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h1>Employee Register</h1>
+                <form id="loginForm">
+                    {% csrf_token %}
+                    <input type="email" class="form-control login-input" name="email" placeholder="Email">
+                    <input type="password" class="form-control login-input" name="password1" placeholder="Password">
+                    <input type="password" class="form-control login-input" name="password2" placeholder="Confirm Password">
+                    <input type="text" class="form-control login-input" name="first_name" placeholder="First Name">
+                    <input type="text" class="form-control login-input" name="last_name" placeholder="Last Name">
+
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+
+    {% block jscript %}
+    <script src="{% static 'js/employee/register.js' %}"></script>
+    {% endblock %}
+{% endblock %}
